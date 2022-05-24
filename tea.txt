@@ -1,1 +1,54 @@
-this is a first line
+void main() {
+  for (var i = 0; i < 10; i++) {
+    msgSelete();
+    var input = stdin.readLineSync()!;
+    seletedUser(inputUser: input);
+  }
+}
+
+msgSelete() {
+  print("Please selete from this:");
+  print("1: show all Students");
+  print("2: search by id");
+  print("3: delete user by id");
+  print("exit: end app");
+}
+
+showAll() {
+  print("**************************");
+  for (var student in students) {
+    print("--------------------");
+    print(student);
+  }
+  print("**************************");
+}
+
+seletedUser({String? inputUser}) {
+  if (inputUser == "1") {
+    showAll();
+  } else if (inputUser == "2") {
+    print("enter id");
+    var inputID = stdin.readLineSync()!;
+    searchByID(id: inputID);
+  } else if (inputUser == "exit") {
+    exit(0);
+  }
+}
+
+searchByID({String? id}) {
+  for (var st in students) {
+    if (st["id"] == int.parse(id!)) {
+      print(st);
+    }
+  }
+}
+
+deleteuSerbyid({String? id}) {
+  for (var i = 0; i < students.length; i++) {
+    if (students[i]["id"] == int.parse(id!)) {
+      print("Removed Done ...");
+      students.removeAt(i);
+      print("student list after deleted ID $id \n $students");
+    }
+  }
+}
